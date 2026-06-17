@@ -1,0 +1,195 @@
+.profile-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background: var(--color-grey-1);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.profile-screen__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 28px;
+  background: linear-gradient(
+    180deg,
+    var(--color-red-plus-3) 0%,
+    var(--color-red-plus-2) 50%,
+    var(--color-red-plus-3) 100%
+  );
+}
+
+.profile-screen__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  font-size: 34px;
+  margin-bottom: 16px;
+}
+
+.profile-screen__username {
+  margin: 0 0 6px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.profile-screen__subtitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+}
+
+/* ── Body ───────────────────────────────────────────────────────── */
+.profile-screen__body {
+  flex: 1;
+  padding: 24px 20px 16px;
+}
+
+.profile-screen__section-label {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: var(--color-grey-3);
+}
+
+/* ── Stats card ─────────────────────────────────────────────────── */
+.profile-screen__stats-card {
+  margin-bottom: 28px;
+  padding: 18px 20px 20px;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+}
+
+.profile-screen__stats-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-screen__stats-number {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1;
+  color: var(--color-red-plus-3);
+}
+
+.profile-screen__stats-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-grey-4);
+  flex: 1;
+}
+
+.profile-screen__stats-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 14px;
+  background: var(--color-red);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--color-white);
+}
+
+.profile-screen__progress-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-grey-2);
+  overflow: hidden;
+}
+
+.profile-screen__progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--color-red);
+  transition: width 0.4s ease;
+}
+
+/* ── Info card ──────────────────────────────────────────────────── */
+.profile-screen__info-card {
+  margin-bottom: 32px;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.profile-screen__info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-grey-5);
+}
+
+.profile-screen__info-divider {
+  height: 1px;
+  margin: 0 16px;
+  background: var(--color-grey-1);
+}
+
+/* ── Powered by ─────────────────────────────────────────────────── */
+.profile-screen__powered-by {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.profile-screen__powered-by-label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--color-grey-3);
+}
+
+.profile-screen__powered-by-a1mk {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.profile-screen__powered-by-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 100%;
+}
+
+.profile-screen__powered-by-mccann {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.profile-screen__powered-by-ama {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}

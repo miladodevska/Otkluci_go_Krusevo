@@ -1,0 +1,88 @@
+@font-face {
+  font-family: 'A1 Serif';
+  src: url('./assets/fonts/A1 Serif/A1Serif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'A1 Serif';
+  src: url('./assets/fonts/A1 Serif/A1Serif-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'A1 Sans';
+  src: url('./assets/fonts/A1 Sans/A1Sans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'A1 Sans';
+  src: url('./assets/fonts/A1 Sans/A1Sans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'A1 Sans';
+  src: url('./assets/fonts/A1 Sans/A1Sans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'A1 Sans';
+  src: url('./assets/fonts/A1 Sans/A1Sans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-wine: #6b1a2a;
+  --color-gold: #c9a84c;
+
+  --color-red-3: #fdc9c4;
+  --color-red-2: #fa8a80;
+  --color-red-1: #ff372d;
+  --color-red: #eb140a;
+  --color-red-plus-1: #b90a05;
+  --color-red-plus-2: #820000;
+  --color-red-plus-3: #460000;
+
+  --color-white: #ffffff;
+  --color-grey-1: #f2f2f2;
+  --color-grey-2: #bcbcbc;
+  --color-grey-3: #999999;
+  --color-grey-4: #4f4f4f;
+  --color-grey-5: #333333;
+  --color-black: #000000;
+
+  --font-heading: 'A1 Serif', serif;
+  --font-body: 'A1 Sans', sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-white);
+  color: var(--color-grey-5);
+}
+
+#root {
+  min-height: 100vh;
+}

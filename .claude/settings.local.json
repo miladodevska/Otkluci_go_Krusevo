@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__use_figma",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "mcp__claude_ai_Figma__get_design_context",
+      "mcp__claude_ai_Figma__download_assets",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/cb2aa13b-690d-4478-8cb3-c0c562cc012b\" -o /tmp/logo1.png)",
+      "Bash(curl -sL \"https://www.figma.com/api/mcp/asset/37b4764b-ef90-4e16-a89e-7346d93a7f3c\" -o /tmp/logo2.png)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

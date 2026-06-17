@@ -1,0 +1,31 @@
+.point-detail-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--color-white);
+  text-align: center;
+}
+
+.point-detail-screen__back {
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-red);
+  cursor: pointer;
+}
+
+.point-detail-screen__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--color-grey-5);
+}

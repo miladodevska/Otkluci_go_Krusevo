@@ -1,0 +1,10 @@
+<svg width="240" height="181" viewBox="0 0 240 181" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Triangle">
+<path id="Vector" d="M120 11.8881L228 170.396H12L120 11.8881Z" fill="#E3000B" fill-opacity="0.31" stroke="white" stroke-width="3"/>
+<path id="Vector_2" d="M120 38.306L204 154.545H36L120 38.306Z" fill="#E3000B" fill-opacity="0.1" stroke="white" stroke-width="2"/>
+<path id="Vector_3" d="M120 64.7239L180 138.694H60L120 64.7239Z" fill="#FDC9C4" fill-opacity="0.2" stroke="#FDC9C4" stroke-width="1.5"/>
+<path id="Vector_4" d="M120 18.4925C125.799 18.4925 130.5 14.3528 130.5 9.24627C130.5 4.1397 125.799 0 120 0C114.201 0 109.5 4.1397 109.5 9.24627C109.5 14.3528 114.201 18.4925 120 18.4925Z" fill="white"/>
+<path id="Vector_5" d="M12 177C16.1421 177 19.5 174.043 19.5 170.396C19.5 166.748 16.1421 163.791 12 163.791C7.85786 163.791 4.5 166.748 4.5 170.396C4.5 174.043 7.85786 177 12 177Z" fill="white"/>
+<path id="Vector_6" d="M228 177C232.142 177 235.5 174.043 235.5 170.396C235.5 166.748 232.142 163.791 228 163.791C223.858 163.791 220.5 166.748 220.5 170.396C220.5 174.043 223.858 177 228 177Z" fill="white"/>
+</g>
+</svg>

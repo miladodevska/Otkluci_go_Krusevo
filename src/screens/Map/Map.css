@@ -1,0 +1,284 @@
+.map-screen {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-grey-1);
+}
+
+.map-screen__map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.map-screen__top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 52px 20px 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.map-screen__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-grey-5);
+}
+
+.map-screen__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.map-screen__progress-chip {
+  position: absolute;
+  top: 104px;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  background: var(--color-white);
+  border-radius: 22px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-grey-5);
+  white-space: nowrap;
+}
+
+.map-screen__progress-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.map-screen__progress-dots {
+  position: absolute;
+  top: 156px;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.map-screen__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 1px solid var(--color-grey-2);
+}
+
+.map-screen__dot--filled {
+  background: var(--color-grey-5);
+  border-color: var(--color-grey-5);
+}
+
+.map-screen__nearest-card {
+  position: absolute;
+  bottom: 96px;
+  left: 24px;
+  right: 24px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 16px;
+  background: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+.map-screen__nearest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.map-screen__nearest-label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.44px;
+  color: var(--color-grey-3);
+}
+
+.map-screen__nearest-name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-grey-5);
+}
+
+.map-screen__nearest-distance {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--color-red);
+}
+
+.map-screen__nearest-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-screen__nearest-arrow--capture {
+  font-size: 24px;
+  animation: nearest-arrow-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes nearest-arrow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(235, 20, 10, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(235, 20, 10, 0);
+  }
+}
+
+/* Tympanon preview popup */
+.map-preview-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 24px;
+}
+
+.map-preview-card {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 24px;
+  background: var(--color-white);
+  overflow: hidden;
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+.map-preview-card__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--color-white);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.map-preview-card__image {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+.map-preview-card__info {
+  padding: 6px 20px 20px;
+}
+
+.map-preview-card__label {
+  margin: 0 0 6px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--color-grey-3);
+}
+
+.map-preview-card__name {
+  margin: 0 0 2px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-red-plus-3);
+}
+
+.map-preview-card__distance {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-red);
+}
+
+/* Leaflet marker styles */
+.map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.map-marker--unlocked {
+  background: var(--color-red);
+}
+
+.map-marker--unlocked img {
+  width: 18px;
+  height: 18px;
+}
+
+.map-marker--active {
+  background: var(--color-red);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25), 0 0 0 6px rgba(235, 20, 10, 0.2);
+}
+
+.map-marker--active img {
+  width: 22px;
+  height: 22px;
+}
+
+.map-marker--locked {
+  background: var(--color-grey-2);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.map-marker--user {
+  background: #4a90d9;
+  border: 3px solid var(--color-white);
+  box-shadow: 0 0 0 4px rgba(74, 144, 217, 0.25);
+}

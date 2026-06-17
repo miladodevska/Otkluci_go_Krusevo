@@ -1,0 +1,155 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-white);
+}
+
+.welcome__hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 68px 24px 140px;
+  background: linear-gradient(
+    180deg,
+    var(--color-red) 0%,
+    var(--color-red-plus-2) 60%,
+    var(--color-red-plus-3) 100%
+  );
+}
+
+.welcome__logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.welcome__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--color-white);
+}
+
+.welcome__subtitle {
+  margin: 8px 0 0;
+  max-width: 300px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-white);
+}
+
+.welcome__tympanon {
+  width: min(340px, 87%);
+  height: auto;
+  margin-top: 40px;
+}
+
+.welcome__card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -40px;
+  padding: 18px 24px 32px;
+  background: var(--color-white);
+  border-radius: 28px 28px 0 0;
+}
+
+.welcome__steps-title {
+  margin: 0 0 30px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.65px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-grey-4);
+}
+
+.welcome__steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 342px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+  gap: 8px;
+}
+
+.welcome__step {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome__step-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.welcome__step-title {
+  margin: 0 0 4px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-grey-5);
+}
+
+.welcome__step-description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-grey-3);
+}
+
+.welcome__step-arrow {
+  position: absolute;
+  top: 14px;
+  right: -12px;
+  font-size: 18px;
+  color: var(--color-grey-3);
+}
+
+.welcome__cta {
+  width: 100%;
+  max-width: 342px;
+  height: 56px;
+  margin-top: auto;
+  border: none;
+  border-radius: 16px;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 8px 20px 0 rgba(227, 0, 11, 0.38);
+  cursor: pointer;
+}
