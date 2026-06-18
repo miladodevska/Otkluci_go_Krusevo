@@ -1,15 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import tympanonHero from '../../assets/icons/tympanon-hero.svg'
-import { tympanons } from '../../data/tympanons'
+import { withUnlockedStatus } from '../../data/tympanons'
+import { useUnlockedIds } from '../../hooks/useUnlockedIds'
 import './Success.css'
 
 function Success() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const point = tympanons.find((t) => t.id === id)
+  const unlockedIds = useUnlockedIds()
+  const tympanons = withUnlockedStatus(unlockedIds)
 
-  const unlockedCount =
-    tympanons.filter((t) => t.status === 'unlocked').length + (point?.status === 'locked' ? 1 : 0)
+  const unlockedCount = tympanons.filter((t) => t.status === 'unlocked').length
 
   return (
     <div className="success-screen">
@@ -34,7 +35,7 @@ function Success() {
       <h1 className="success-screen__title">Отклучи нова приказна!</h1>
 
       <div className="success-screen__progress-chip">
-        🏛 {unlockedCount} / {tympanons.length} тимпанони
+        🔓 {unlockedCount} / {tympanons.length} тимпанони
       </div>
 
       <div className="success-screen__progress-dots">

@@ -1,14 +1,16 @@
 import BottomNav from '../../components/BottomNav/BottomNav'
-import { tympanons } from '../../data/tympanons'
+import { withUnlockedStatus } from '../../data/tympanons'
+import { useUnlockedIds } from '../../hooks/useUnlockedIds'
 import a1mk from '../../assets/images/A1_MK.png'
-import mccann from '../../assets/images/MCCANN.png'
-import ama from '../../assets/images/AMA.png'
+import profileIcon from '../../assets/icons/profile.svg'
 import './Profile.css'
 
 const DEFAULT_NICKNAME = 'МалАвантурист'
 
 function Profile() {
   const nickname = localStorage.getItem('nickname') || DEFAULT_NICKNAME
+  const unlockedIds = useUnlockedIds()
+  const tympanons = withUnlockedStatus(unlockedIds)
   const unlockedCount = tympanons.filter((t) => t.status === 'unlocked').length
   const total = tympanons.length
   const progressPct = Math.round((unlockedCount / total) * 100)
@@ -17,7 +19,7 @@ function Profile() {
     <div className="profile-screen">
       <div className="profile-screen__header">
         <div className="profile-screen__avatar">
-          <span aria-hidden="true">👤</span>
+          <img src={profileIcon} alt="Avatar" className="profile-icon" />
         </div>
         <h1 className="profile-screen__username">{nickname}</h1>
         <p className="profile-screen__subtitle">Корисничко име</p>
@@ -59,10 +61,6 @@ function Profile() {
         <div className="profile-screen__powered-by">
           <p className="profile-screen__powered-by-label">Powered by:</p>
           <img className="profile-screen__powered-by-a1mk" src={a1mk} alt="A1 Македонија" />
-          <div className="profile-screen__powered-by-row">
-            <img className="profile-screen__powered-by-mccann" src={mccann} alt="McCann" />
-            <img className="profile-screen__powered-by-ama" src={ama} alt="AMA Group" />
-          </div>
         </div>
       </div>
 

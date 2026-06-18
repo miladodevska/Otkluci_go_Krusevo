@@ -1,14 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { tympanons } from '../../data/tympanons'
+import { withUnlockedStatus } from '../../data/tympanons'
+import { useUnlockedIds } from '../../hooks/useUnlockedIds'
 import './Story.css'
 
 function Story() {
   const navigate = useNavigate()
   const { id } = useParams()
+  const unlockedIds = useUnlockedIds()
+  const tympanons = withUnlockedStatus(unlockedIds)
   const point = tympanons.find((t) => t.id === id)
 
-  const unlockedCount =
-    tympanons.filter((t) => t.status === 'unlocked').length + (point?.status === 'locked' ? 1 : 0)
+  const unlockedCount = tympanons.filter((t) => t.status === 'unlocked').length
 
   if (!point) return null
 

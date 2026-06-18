@@ -3,7 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom'
 import iconSave from '../../assets/icons/icon-save.svg'
 import iconMap from '../../assets/icons/icon-map.svg'
 import { tympanons } from '../../data/tympanons'
+import { CAPTURE_RADIUS_M } from '../../lib/constants'
+import { getPlayerId, getRedeemCode } from '../../lib/playerId'
+import { unlockTympanon } from '../../lib/progress'
+import { distanceInMeters, getCurrentPosition } from '../../utils/geo'
 import './Capture.css'
+
+const DEFAULT_NICKNAME = 'МалАвантурист'
 
 function Capture() {
   const navigate = useNavigate()
@@ -12,6 +18,8 @@ function Capture() {
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [photo, setPhoto] = useState<string | null>(null)
+  const [isSaving, setIsSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -22,9 +30,40 @@ function Capture() {
     reader.readAsDataURL(file)
   }
 
-  const handleSave = () => {
-    if (!photo) return
-    navigate(`/point/${id}/success`)
+  const handleSave = async () => {
+    if (!photo || !id || !point || isSaving) return
+    setIsSaving(true)
+    setError(null)
+
+    let location
+    try {
+      location = await getCurrentPosition()
+    } catch {
+      setError('Не можеме да ја потврдиме локацијата. Овозможи локациски услуги на уредоти пробај пак.')
+      setIsSaving(false)
+      return
+    }
+
+    const distance = distanceInMeters(location, { lat: point.lat, lng: point.lng })
+    if (distance > CAPTURE_RADIUS_M) {
+      setError(
+        `Далеку си од тимпанонот (~${Math.round(distance)} м). Приближи се и пробај пак.`,
+      )
+      setIsSaving(false)
+      return
+    }
+
+    try {
+      const playerId = getPlayerId()
+      const redeemCode = getRedeemCode()
+      const nickname = localStorage.getItem('nickname') || DEFAULT_NICKNAME
+      await unlockTympanon(playerId, nickname, redeemCode, id, photo, location)
+      navigate(`/point/${id}/success`)
+    } catch {
+      setError('Неуспешно зачувување. Провери интернет конекција и пробај пак.')
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   return (
@@ -33,6 +72,7 @@ function Capture() {
         ←
       </button>
       <h1 className="capture-screen__title">{point ? point.name : 'Најде тимпанон?'}</h1>
+      {error && <p className="capture-screen__error">{error}</p>}
 
       <div className="capture-screen__preview">
         {photo ? (<img className="capture-screen__photo" src={photo} alt="Сликан тимпанон" />) : (
@@ -60,12 +100,12 @@ function Capture() {
             className="capture-screen__btn"
             type="button"
             onClick={handleSave}
-            disabled={!photo}
+            disabled={!photo || isSaving}
             aria-label="Зачувај"
           >
             <img src={iconSave} alt="" />
           </button>
-          <span className="capture-screen__label">Зачувај</span>
+          <span className="capture-screen__label">{isSaving ? 'Се зачувува…' : 'Зачувај'}</span>
         </div>
 
         <div className="capture-screen__action">

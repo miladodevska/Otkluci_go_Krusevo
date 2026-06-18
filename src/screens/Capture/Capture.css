@@ -40,6 +40,20 @@
   white-space: nowrap;
 }
 
+.capture-screen__error {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  z-index: 1;
+  width: 80%;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-red-1);
+}
+
 .capture-screen__preview {
   position: relative;
   display: flex;

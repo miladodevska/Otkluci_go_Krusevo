@@ -33,6 +33,10 @@
   margin-bottom: 16px;
 }
 
+.profile-icon {
+  font-size: 34px;
+}
+
 .profile-screen__username {
   margin: 0 0 6px;
   font-family: var(--font-heading);
@@ -169,27 +173,6 @@
 }
 
 .profile-screen__powered-by-a1mk {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-}
-
-.profile-screen__powered-by-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
-  width: 100%;
-}
-
-.profile-screen__powered-by-mccann {
-  height: 22px;
-  width: auto;
-  object-fit: contain;
-}
-
-.profile-screen__powered-by-ama {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
+  height: 10vh;
+  object-fit: cover;
 }

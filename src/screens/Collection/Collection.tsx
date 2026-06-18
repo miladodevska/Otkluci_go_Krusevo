@@ -2,11 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import tympanonCardUnlocked from '../../assets/icons/tympanon-card-unlocked.svg'
 import tympanonCardLocked from '../../assets/icons/tympanon-card-locked.svg'
 import BottomNav from '../../components/BottomNav/BottomNav'
-import { tympanons } from '../../data/tympanons'
+import { withUnlockedStatus } from '../../data/tympanons'
+import { useUnlockedIds } from '../../hooks/useUnlockedIds'
 import './Collection.css'
 
 function Collection() {
   const navigate = useNavigate()
+  const unlockedIds = useUnlockedIds()
+  const tympanons = withUnlockedStatus(unlockedIds)
   const unlockedCount = tympanons.filter((t) => t.status === 'unlocked').length
 
   let unlockedSeen = 0

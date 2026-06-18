@@ -7,13 +7,13 @@ import markerTriangle from '../../assets/icons/marker-triangle.svg'
 import progressTriangle from '../../assets/icons/progress-triangle.svg'
 import BottomNav from '../../components/BottomNav/BottomNav'
 import LockedPointSheet from '../../components/LockedPointSheet/LockedPointSheet'
-import { tympanons } from '../../data/tympanons'
+import { withUnlockedStatus } from '../../data/tympanons'
+import { useUnlockedIds } from '../../hooks/useUnlockedIds'
+import { CAPTURE_RADIUS_M, NEARBY_RADIUS_M } from '../../lib/constants'
 import { distanceInMeters, type LatLng } from '../../utils/geo'
 import './Map.css'
 
 const KRUSHEVO_CENTER: LatLng = { lat: 41.3717, lng: 21.2486 }
-const NEARBY_RADIUS_M = 50
-const CAPTURE_RADIUS_M = 20
 
 const unlockedIcon = divIcon({
   className: 'map-marker map-marker--unlocked',
@@ -46,6 +46,8 @@ const userIcon = divIcon({
 function Map() {
   const navigate = useNavigate()
   const [userPosition, setUserPosition] = useState<LatLng | null>(null)
+  const unlockedIds = useUnlockedIds()
+  const tympanons = withUnlockedStatus(unlockedIds)
 
   useEffect(() => {
     if (!navigator.geolocation) return
@@ -145,7 +147,7 @@ function Map() {
           </div>
           {canCapture ? (
             <button
-              className="map-screen__nearest-arrow map-screen__nearest-arrow--capture"
+              className="map-screen__nearest-arrow--capture"
               type="button"
               onClick={() => navigate(`/point/${nearestLocked.point.id}/capture`)}
               aria-label="Сликај го тимпанонот"

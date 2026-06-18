@@ -1,7 +1,6 @@
 import tympanonLocked from '../../assets/icons/tympanon-locked.svg'
+import { NEARBY_RADIUS_M } from '../../lib/constants'
 import './LockedPointSheet.css'
-
-const NEARBY_RADIUS_M = 50
 
 interface LockedPointSheetProps {
   distance: number

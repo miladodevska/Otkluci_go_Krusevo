@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import rewardQr from '../../assets/icons/reward-qr.svg'
 import trophy from '../../assets/icons/trophy.png'
+import { getRedeemCode } from '../../lib/playerId'
 import './Completed.css'
 
 const DEFAULT_NICKNAME = 'МалАвантурист'
@@ -8,6 +8,7 @@ const DEFAULT_NICKNAME = 'МалАвантурист'
 function Completed() {
   const navigate = useNavigate()
   const nickname = localStorage.getItem('nickname') || DEFAULT_NICKNAME
+  const redeemCode = getRedeemCode()
 
   const handleShare = () => {
     const shareData = {
@@ -45,9 +46,10 @@ function Completed() {
         Покажи го кодот на инфо-пултот за да ја подигнеш твојата награда.
       </p>
 
-      <img className="completed-screen__qr" src={rewardQr} alt="QR код за подигнување на награда" />
-
-      <p className="completed-screen__username">Корисничко име: {nickname}</p>
+    <div className="completed-screen__info-card">
+      <p className="completed-screen__username"><span>Корисничко име: </span>{nickname}</p>
+      <p className="completed-screen__username"><span>Код: </span>{redeemCode}</p>
+    </div>
 
       <div className="completed-screen__info-card">
         <p>📍 Инфо-пулт: Плоштад Никола Карев</p>

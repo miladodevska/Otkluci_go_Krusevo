@@ -9,6 +9,22 @@ function toRadians(degrees: number): number {
   return (degrees * Math.PI) / 180
 }
 
+export function getCurrentPosition(): Promise<LatLng> {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error('geolocation-unsupported'))
+      return
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) =>
+        resolve({ lat: position.coords.latitude, lng: position.coords.longitude }),
+      (err) => reject(err),
+      { enableHighAccuracy: true, timeout: 10000 },
+    )
+  })
+}
+
 export function distanceInMeters(a: LatLng, b: LatLng): number {
   const dLat = toRadians(b.lat - a.lat)
   const dLng = toRadians(b.lng - a.lng)

@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /players/{playerId} {
+      allow read: if true;
+
+      allow create, update: if isValidPlayerDoc(request.resource.data);
+
+      allow delete: if false;
+
+      function isValidPlayerDoc(data) {
+        return data.keys().hasOnly(['nickname', 'redeemCode', 'unlocked', 'captures'])
+          && data.nickname is string
+          && data.nickname.size() <= 30
+          && data.redeemCode is string
+          && data.redeemCode.size() == 6
+          && data.unlocked is list
+          && data.unlocked.size() <= 7
+          && data.unlocked.hasOnly(['1', '2', '3', '4', '5', '6', '7'])
+          && (
+            !('captures' in data) || isValidCaptures(data.captures)
+          );
+      }
+
+      function isValidCaptures(captures) {
+        return captures.size() <= 7
+          && captures.keys().hasOnly(['1', '2', '3', '4', '5', '6', '7']);
+      }
+    }
+  }
+}
