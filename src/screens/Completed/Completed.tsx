@@ -1,6 +1,8 @@
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import trophy from '../../assets/icons/trophy.png'
-import { getRedeemCode } from '../../lib/playerId'
+import { getPlayerId, getStoredRedeemCode, setStoredRedeemCode } from '../../lib/playerId'
+import { claimRedeemCode } from '../../lib/redeemCodes'
 import './Completed.css'
 
 const DEFAULT_NICKNAME = 'МалАвантурист'
@@ -8,7 +10,23 @@ const DEFAULT_NICKNAME = 'МалАвантурист'
 function Completed() {
   const navigate = useNavigate()
   const nickname = localStorage.getItem('nickname') || DEFAULT_NICKNAME
-  const redeemCode = getRedeemCode()
+  const [redeemCode, setRedeemCode] = useState<string | null>(getStoredRedeemCode())
+  const [error, setError] = useState<string | null>(null)
+
+  const claim = useCallback(async () => {
+    setError(null)
+    try {
+      const code = await claimRedeemCode(getPlayerId())
+      setStoredRedeemCode(code)
+      setRedeemCode(code)
+    } catch {
+      setError('Не успеавме да доделиме код. Провери интернет конекција и пробај пак.')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!redeemCode) claim()
+  }, [redeemCode, claim])
 
   const handleShare = () => {
     const shareData = {
@@ -46,10 +64,18 @@ function Completed() {
         Покажи го кодот на инфо-пултот за да ја подигнеш твојата награда.
       </p>
 
-    <div className="completed-screen__info-card">
-      <p className="completed-screen__username"><span>Корисничко име: </span>{nickname}</p>
-      <p className="completed-screen__username"><span>Код: </span>{redeemCode}</p>
-    </div>
+      <div className="completed-screen__info-card">
+        <p className="completed-screen__username"><span>Корисничко име: </span>{nickname}</p>
+        <p className="completed-screen__username">
+          <span>Код: </span>
+          {redeemCode ?? (error ? 'Грешка' : 'Се доделува...')}
+        </p>
+        {error && (
+          <button className="completed-screen__retry" type="button" onClick={claim}>
+            Обиди се повторно
+          </button>
+        )}
+      </div>
 
       <div className="completed-screen__info-card">
         <p>📍 Инфо-пулт: Плоштад Никола Карев</p>

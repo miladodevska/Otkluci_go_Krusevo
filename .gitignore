@@ -13,6 +13,10 @@ dist-ssr
 *.local
 .env
 
+# Redeem code pool (sensitive prize data) and Firebase admin credentials
+/data
+service-account.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

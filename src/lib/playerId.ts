@@ -1,10 +1,6 @@
 const PLAYER_ID_KEY = 'playerId'
 const REDEEM_CODE_KEY = 'redeemCode'
 
-// Excludes visually ambiguous characters (0/O, 1/I/L) for easier reading at the info desk.
-const REDEEM_CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
-const REDEEM_CODE_LENGTH = 6
-
 export function getPlayerId(): string {
   let id = localStorage.getItem(PLAYER_ID_KEY)
   if (!id) {
@@ -16,16 +12,13 @@ export function getPlayerId(): string {
 
 // Short human-readable code shown to the player/staff, separate from the
 // internal playerId (UUID) used as the Firestore doc id and Storage path.
-export function getRedeemCode(): string {
-  let code = localStorage.getItem(REDEEM_CODE_KEY)
-  if (!code) {
-    code = generateRedeemCode()
-    localStorage.setItem(REDEEM_CODE_KEY, code)
-  }
-  return code
+// Unlike playerId, this is never generated locally — it's claimed from the
+// pre-seeded `redeemCodes` pool in Firestore once the quest is completed
+// (see lib/redeemCodes.ts), so only persist/read it here.
+export function getStoredRedeemCode(): string | null {
+  return localStorage.getItem(REDEEM_CODE_KEY)
 }
 
-function generateRedeemCode(): string {
-  const bytes = crypto.getRandomValues(new Uint8Array(REDEEM_CODE_LENGTH))
-  return Array.from(bytes, (b) => REDEEM_CODE_ALPHABET[b % REDEEM_CODE_ALPHABET.length]).join('')
+export function setStoredRedeemCode(code: string): void {
+  localStorage.setItem(REDEEM_CODE_KEY, code)
 }

@@ -4,7 +4,7 @@ import iconSave from '../../assets/icons/icon-save.svg'
 import iconMap from '../../assets/icons/icon-map.svg'
 import { tympanons } from '../../data/tympanons'
 import { CAPTURE_RADIUS_M } from '../../lib/constants'
-import { getPlayerId, getRedeemCode } from '../../lib/playerId'
+import { getPlayerId } from '../../lib/playerId'
 import { unlockTympanon } from '../../lib/progress'
 import { distanceInMeters, getCurrentPosition } from '../../utils/geo'
 import './Capture.css'
@@ -55,9 +55,8 @@ function Capture() {
 
     try {
       const playerId = getPlayerId()
-      const redeemCode = getRedeemCode()
       const nickname = localStorage.getItem('nickname') || DEFAULT_NICKNAME
-      await unlockTympanon(playerId, nickname, redeemCode, id, photo, location)
+      await unlockTympanon(playerId, nickname, id, photo, location)
       navigate(`/point/${id}/success`)
     } catch {
       setError('Неуспешно зачувување. Провери интернет конекција и пробај пак.')

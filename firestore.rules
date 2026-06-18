@@ -10,11 +10,9 @@ service cloud.firestore {
       allow delete: if false;
 
       function isValidPlayerDoc(data) {
-        return data.keys().hasOnly(['nickname', 'redeemCode', 'unlocked', 'captures'])
+        return data.keys().hasOnly(['nickname', 'unlocked', 'captures'])
           && data.nickname is string
           && data.nickname.size() <= 30
-          && data.redeemCode is string
-          && data.redeemCode.size() == 6
           && data.unlocked is list
           && data.unlocked.size() <= 7
           && data.unlocked.hasOnly(['1', '2', '3', '4', '5', '6', '7'])
@@ -27,6 +25,20 @@ service cloud.firestore {
         return captures.size() <= 7
           && captures.keys().hasOnly(['1', '2', '3', '4', '5', '6', '7']);
       }
+    }
+
+    match /redeemCodes/{code} {
+      allow read: if true;
+
+      // Only allows claiming an unused code (used: false -> true) for a player.
+      // Codes are seeded by an admin script and can never be created, deleted,
+      // or un-claimed from the client.
+      allow update: if resource.data.used == false
+        && request.resource.data.used == true
+        && request.resource.data.code == resource.data.code
+        && request.resource.data.playerId is string;
+
+      allow create, delete: if false;
     }
   }
 }
