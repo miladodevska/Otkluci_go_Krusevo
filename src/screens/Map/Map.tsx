@@ -10,6 +10,7 @@ import LockedPointSheet from '../../components/LockedPointSheet/LockedPointSheet
 import { withUnlockedStatus } from '../../data/tympanons'
 import { useUnlockedIds } from '../../hooks/useUnlockedIds'
 import { CAPTURE_RADIUS_M, NEARBY_RADIUS_M } from '../../lib/constants'
+import { isDebugMode } from '../../lib/debug'
 import { distanceInMeters, type LatLng } from '../../utils/geo'
 import './Map.css'
 
@@ -76,12 +77,12 @@ function Map() {
         point, distance: distanceInMeters(origin, point),
       }))
       .sort((a, b) => a.distance - b.distance)[0]
-  }, [userPosition])
+  }, [userPosition, tympanons])
 
   const [showPreview, setShowPreview] = useState(false)
 
   const isHighlighted = nearestLocked && nearestLocked.distance <= NEARBY_RADIUS_M
-  const canCapture = nearestLocked && nearestLocked.distance <= CAPTURE_RADIUS_M
+  const canCapture = nearestLocked && (isDebugMode() || nearestLocked.distance <= CAPTURE_RADIUS_M)
   const showSheet = isHighlighted && !canCapture
 
   return (

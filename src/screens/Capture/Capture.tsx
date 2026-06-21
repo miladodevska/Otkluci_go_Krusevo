@@ -4,6 +4,7 @@ import iconSave from '../../assets/icons/icon-save.svg'
 import iconMap from '../../assets/icons/icon-map.svg'
 import { tympanons } from '../../data/tympanons'
 import { CAPTURE_RADIUS_M } from '../../lib/constants'
+import { isDebugMode } from '../../lib/debug'
 import { getPlayerId } from '../../lib/playerId'
 import { unlockTympanon } from '../../lib/progress'
 import { distanceInMeters, getCurrentPosition } from '../../utils/geo'
@@ -39,18 +40,23 @@ function Capture() {
     try {
       location = await getCurrentPosition()
     } catch {
-      setError('Не можеме да ја потврдиме локацијата. Овозможи локациски услуги на уредоти пробај пак.')
-      setIsSaving(false)
-      return
+      if (!isDebugMode()) {
+        setError('Не можеме да ја потврдиме локацијата. Овозможи локациски услуги на уредоти пробај пак.')
+        setIsSaving(false)
+        return
+      }
+      location = { lat: point.lat, lng: point.lng }
     }
 
-    const distance = distanceInMeters(location, { lat: point.lat, lng: point.lng })
-    if (distance > CAPTURE_RADIUS_M) {
-      setError(
-        `Далеку си од тимпанонот (~${Math.round(distance)} м). Приближи се и пробај пак.`,
-      )
-      setIsSaving(false)
-      return
+    if (!isDebugMode()) {
+      const distance = distanceInMeters(location, { lat: point.lat, lng: point.lng })
+      if (distance > CAPTURE_RADIUS_M) {
+        setError(
+          `Далеку си од тимпанонот (~${Math.round(distance)} м). Приближи се и пробај пак.`,
+        )
+        setIsSaving(false)
+        return
+      }
     }
 
     try {
