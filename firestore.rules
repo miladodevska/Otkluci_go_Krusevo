@@ -30,9 +30,6 @@ service cloud.firestore {
     match /redeemCodes/{code} {
       allow read: if true;
 
-      // Only allows claiming an unused code (used: false -> true) for a player.
-      // Codes are seeded by an admin script and can never be created, deleted,
-      // or un-claimed from the client.
       allow update: if resource.data.used == false
         && request.resource.data.used == true
         && request.resource.data.code == resource.data.code

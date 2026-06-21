@@ -5,7 +5,6 @@ import { db, storage } from './firebase'
 
 export interface PlayerProgress {
   nickname: string
-  redeemCode: string
   unlocked: string[]
   captures: Record<string, { url: string; capturedAt: unknown; location: LatLng }>
 }
@@ -24,7 +23,6 @@ export function subscribeToProgress(
 export async function unlockTympanon(
   playerId: string,
   nickname: string,
-  redeemCode: string,
   pointId: string,
   photoDataUrl: string,
   location: LatLng,
@@ -38,7 +36,6 @@ export async function unlockTympanon(
     playerRef,
     {
       nickname,
-      redeemCode,
       unlocked: arrayUnion(pointId),
       captures: {
         [pointId]: { url, capturedAt: serverTimestamp(), location },

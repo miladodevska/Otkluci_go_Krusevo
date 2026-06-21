@@ -120,3 +120,9 @@
   box-shadow: 0 8px 20px 0 rgba(227, 0, 11, 0.35);
   cursor: pointer;
 }
+
+.nickname__cta:disabled {
+  background: var(--color-grey-3);
+  box-shadow: none;
+  cursor: not-allowed;
+}

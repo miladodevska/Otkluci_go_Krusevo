@@ -47,8 +47,10 @@ function Nickname() {
         <button
           className="nickname__cta"
           type="button"
+          disabled={!nickname.trim()}
           onClick={() => {
-            if (nickname.trim()) localStorage.setItem('nickname', nickname.trim())
+            if (!nickname.trim()) return
+            localStorage.setItem('nickname', nickname.trim())
             navigate('/map')
           }}
         >

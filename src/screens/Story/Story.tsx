@@ -39,8 +39,12 @@ function Story() {
         <p className="story-screen__body">{point.story}</p>
       </div>
 
-      <button className="story-screen__cta" type="button" onClick={() => navigate('/map')}>
-        ← Назад кон мапата
+      <button
+        className="story-screen__cta"
+        type="button"
+        onClick={() => navigate(unlockedCount === tympanons.length ? '/quest-complete' : '/map')}
+      >
+        {unlockedCount === tympanons.length ? 'Подигни ја наградата →' : '← Назад кон мапата'}
       </button>
     </div>
   )

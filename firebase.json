@@ -1,0 +1,9 @@
+{
+  "firestore": {
+    "database": "tympanon",
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
