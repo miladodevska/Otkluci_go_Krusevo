@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import iconSave from '../../assets/icons/icon-save.svg'
 import iconMap from '../../assets/icons/icon-map.svg'
 import { tympanons } from '../../data/tympanons'
@@ -7,7 +7,7 @@ import { CAPTURE_RADIUS_M } from '../../lib/constants'
 import { isDebugMode } from '../../lib/debug'
 import { getPlayerId } from '../../lib/playerId'
 import { unlockTympanon } from '../../lib/progress'
-import { distanceInMeters, getCurrentPosition } from '../../utils/geo'
+import { distanceInMeters, getCurrentPosition, type LatLng } from '../../utils/geo'
 import './Capture.css'
 
 const DEFAULT_NICKNAME = 'МалАвантурист'
@@ -15,6 +15,8 @@ const DEFAULT_NICKNAME = 'МалАвантурист'
 function Capture() {
   const navigate = useNavigate()
   const { id } = useParams()
+  const routerLocation = useLocation()
+  const mapLocation = (routerLocation.state as { location?: LatLng } | null)?.location
   const point = tympanons.find((t) => t.id === id)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -36,16 +38,18 @@ function Capture() {
     setIsSaving(true)
     setError(null)
 
-    let location
-    try {
-      location = await getCurrentPosition()
-    } catch {
-      if (!isDebugMode()) {
-        setError('Не можеме да ја потврдиме локацијата. Овозможи локациски услуги на уредоти пробај пак.')
-        setIsSaving(false)
-        return
+    let location = mapLocation
+    if (!location) {
+      try {
+        location = await getCurrentPosition()
+      } catch {
+        if (!isDebugMode()) {
+          setError('Не можеме да ја потврдиме локацијата. Овозможи локациски услуги на уредот и пробај пак.')
+          setIsSaving(false)
+          return
+        }
+        location = { lat: point.lat, lng: point.lng }
       }
-      location = { lat: point.lat, lng: point.lng }
     }
 
     if (!isDebugMode()) {

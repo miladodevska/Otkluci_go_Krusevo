@@ -150,7 +150,11 @@ function Map() {
             <button
               className="map-screen__nearest-arrow--capture"
               type="button"
-              onClick={() => navigate(`/point/${nearestLocked.point.id}/capture`)}
+              onClick={() =>
+                navigate(`/point/${nearestLocked.point.id}/capture`, {
+                  state: userPosition ? { location: userPosition } : undefined,
+                })
+              }
               aria-label="Сликај го тимпанонот"
             >
               📷
