@@ -153,6 +153,8 @@
 
 .map-screen__nearest-arrow--capture {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 44px;
   height: 44px;
   border: none;
