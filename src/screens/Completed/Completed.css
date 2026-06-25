@@ -153,6 +153,10 @@
   color: var(--color-red-4);
 }
 
+.completed-screen__location {
+  font-weight: 700;
+}
+
 .completed-screen__info-card p {
   margin: 0;
 }

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import a1Logo from '../../assets/images/A1_Logo_Std_Red_Pos_3_L.png'
-import tympanonHero from '../../assets/icons/tympanon-hero.svg'
+import keyVisual from '../../assets/images/keyvisual.svg'
 import './Welcome.css'
 
 const steps = [
@@ -28,13 +28,11 @@ function Welcome() {
     <div className="welcome">
       <section className="welcome__hero">
         <img className="welcome__logo" src={a1Logo} alt="A1" />
-        <h1 className="welcome__title">Отклучи го Крушево</h1>
-        <p className="welcome__subtitle">
-          Откријте ги скриените приказни на
-          <br />
-          најубавите фасади во Крушево
-        </p>
-        <img className="welcome__tympanon" src={tympanonHero} alt="" />
+        <h1 className="welcome__title">Отклучи ја приказната за тимпаноните <br></br>во Крушево</h1>
+        {/* <p className="welcome__subtitle">
+          Откријте ги скриените приказни на <br /> најубавите фасади во Крушево
+        </p> */}
+        <img className="welcome__tympanon" src={keyVisual} alt="" />
       </section>
 
       <section className="welcome__card">

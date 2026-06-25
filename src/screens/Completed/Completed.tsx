@@ -28,16 +28,16 @@ function Completed() {
     if (!redeemCode) claim()
   }, [redeemCode, claim])
 
-  const handleShare = () => {
-    const shareData = {
-      title: 'Отклучи го Крушево',
-      text: 'Ја освоив потрагата „Отклучи го Крушево“ и ги најдов сите 7 тимпанони!',
-    }
+  // const handleShare = () => {
+  //   const shareData = {
+  //     title: 'Отклучи го Крушево',
+  //     text: 'Ја освоив потрагата „Отклучи го Крушево“ и ги најдов сите 7 тимпанони!',
+  //   }
 
-    if (navigator.share) {
-      navigator.share(shareData).catch(() => {})
-    }
-  }
+  //   if (navigator.share) {
+  //     navigator.share(shareData).catch(() => {})
+  //   }
+  // }
 
   return (
     <div className="completed-screen">
@@ -78,13 +78,13 @@ function Completed() {
       </div>
 
       <div className="completed-screen__info-card">
-        <p>📍 Инфо-пулт: Плоштад Никола Карев</p>
+        <p className="completed-screen__location">📍 Инфо-пулт: Плоштад Никола Карев</p>
         <p>Работно време: 09:00 – 17:00</p>
       </div>
 
-      <button className="completed-screen__share" type="button" onClick={handleShare}>
+      {/* <button className="completed-screen__share" type="button" onClick={handleShare}>
         ↑ Сподели го достигнувањето
-      </button>
+      </button> */}
 
       <button className="completed-screen__back" type="button" onClick={() => navigate('/map')}>
         Назад кон мапата
