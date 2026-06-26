@@ -28,10 +28,8 @@ function Welcome() {
     <div className="welcome">
       <section className="welcome__hero">
         <img className="welcome__logo" src={a1Logo} alt="A1" />
-        <h1 className="welcome__title">Отклучи ја приказната за тимпаноните <br></br>во Крушево</h1>
-        {/* <p className="welcome__subtitle">
-          Откријте ги скриените приказни на <br /> најубавите фасади во Крушево
-        </p> */}
+        <h1 className="welcome__title">Крушево</h1>
+        <h2 className="welcome__subtitle">Град на приказни</h2>
         <img className="welcome__tympanon" src={keyVisual} alt="" />
       </section>
 

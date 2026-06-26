@@ -32,17 +32,17 @@
   margin: 0;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.2;
   color: var(--color-white);
 }
 
 .welcome__subtitle {
-  margin: 8px 0 0;
+  margin: 0 0 0;
   max-width: 300px;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 28px;
   line-height: 1.55;
   color: var(--color-white);
 }
